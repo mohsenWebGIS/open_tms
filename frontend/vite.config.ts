@@ -27,7 +27,11 @@ export default defineConfig(({ mode }) => {
       ]
     },
     define: {
-      'import.meta.env.VITE_API_URL': JSON.stringify(env.VITE_API_URL || 'http://localhost:3001')
+      // If VITE_API_URL is not set, leave it undefined so the client code can
+      // default to the current origin. Avoid hardcoding localhost so that
+      // visiting the UI via IP/hostname works without the frontend calling
+      // localhost:3001.
+      'import.meta.env.VITE_API_URL': JSON.stringify(env.VITE_API_URL || '')
     }
   }
 })
