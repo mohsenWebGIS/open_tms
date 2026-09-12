@@ -24,6 +24,7 @@ export default defineConfig(({ mode }) => {
         '.ngrok.io',
         '.ngrok.app',
         '.devtunnels.ms',
+	'otms.moaah.sbs'
       ]
     },
     define: {

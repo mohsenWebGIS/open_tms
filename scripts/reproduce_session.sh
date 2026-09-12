@@ -122,6 +122,13 @@ info "Reinstalling top-level node modules to ensure native deps are present"
 rm -rf node_modules package-lock.json || true
 npm install
 
+# Regenerate Prisma client after the clean install (the prior generate was
+# wiped when root node_modules was removed)
+info "Regenerating Prisma client after clean install"
+cd backend
+npm run prisma:generate
+cd ..
+
 # Seed the database with the comprehensive demo dataset
 info "Seeding demo data (this will wipe existing demo data by default)"
 npx tsx backend/src/scripts/comprehensive-seed.ts
